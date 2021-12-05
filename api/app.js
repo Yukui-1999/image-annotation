@@ -12,6 +12,9 @@ var forgetpwd = require("./routes/user/forgetpwd");
 var pictureupload = require("./routes/user/pictureupload")
 var alljobs = require("./routes/user/alljobs")
 var login= require('./routes/user/login');
+var myrelease = require('./routes/user/myrelease')
+var claimtask = require('./routes/user/claimtask')
+var myreceive = require('./routes/user/myreceive')
 var app = express();
 
 // view engine setup
@@ -30,8 +33,11 @@ app.use("/testAPI", testAPIRouter);
 app.use("/register", register)
 app.use("/forgetpwd",forgetpwd)
 app.use("/pictureupload",pictureupload)
+app.use("/myrelease",myrelease)
 app.use("/alljobs",alljobs)
 app.use("/login",login)
+app.use("/claimtask",claimtask)
+app.use("/myreceive",myreceive)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

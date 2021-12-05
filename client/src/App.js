@@ -12,19 +12,19 @@ import 'antd/dist/antd.css';
 
 class App extends Component{
   state = {
-    // username: cookie.load('username')
+    username: cookie.load('username'),
     username:null,
 }
 
 //从cookie中判断是否是第一次进入首页
-componentDidMount () {
-    const success = cookie.load('loginSuccess')
-    if (success !== undefined) {
-        message.success('登陆成功。欢迎您，' + this.state.username, 10)
-            .then(value => console.log(value), reason => console.log(reason))
-        cookie.remove('loginSuccess',{ path: '/' })
-    }
-}
+// componentDidMount () {
+//     const success = cookie.load('loginSuccess')
+//     if (success !== undefined) {
+//         message.success('登陆成功。欢迎您，' + this.state.username, 10)
+//             .then(value => console.log(value), reason => console.log(reason))
+//         cookie.remove('loginSuccess',{ path: '/' })
+//     }
+// }
 
   // async callAPI() {
   //     const res=await axios.get('http://localhost:9000/testAPI/api')
@@ -42,7 +42,6 @@ componentDidMount () {
   render(){
     return (
       <div>
-                
                 <Switch>
                     <Route path="/index" component={Index} />
                     <Route path="/login" component={Login} />

@@ -33,7 +33,56 @@ const userData = {
         db.query(sqlStatement.queryjobs,(err,result)=>{
             console.log(result)
             const jieguo=result
-            if(err || result.length === 0){
+            if(err ){
+                const result = {status:'failed'}
+                res.send(JSON.stringify(result))
+            }
+            else{
+                const result = {status:'success',arrays:jieguo}
+                res.send(JSON.stringify(result))
+            }
+        })
+    },
+    myrelease:(param,res)=>{
+        let username = param.username
+        console.log(username)
+        db.query(sqlStatement.querymyrelease,username,(err,result)=>{
+            console.log(result)
+            const jieguo=result
+            if(err){
+                const result = {status:'failed'}
+                res.send(JSON.stringify(result))
+            }
+            else{
+                const result = {status:'success',arrays:jieguo}
+                res.send(JSON.stringify(result))
+            }
+        })
+    },
+    claimtask:(param,res)=>{
+        let username = param.username
+        let orderid = param.orderid
+        let state = 'accept'
+        console.log(username,orderid)
+        db.query(sqlStatement.claimtask,[state,username,orderid],(err,result)=>{
+            console.log(result)
+            if(err){
+                const result = {status:'failed'}
+                res.send(JSON.stringify(result))
+            }
+            else{
+                const result = {status:'success'}
+                res.send(JSON.stringify(result))
+            }
+        })
+    },
+    myreceive:(param,res)=>{
+        let username = param.username
+        console.log(username)
+        db.query(sqlStatement.querymyreceive,username,(err,result)=>{
+            console.log(result)
+            const jieguo=result
+            if(err){
                 const result = {status:'failed'}
                 res.send(JSON.stringify(result))
             }
@@ -45,13 +94,13 @@ const userData = {
     },
 
 
-
     pictureupload:(param,res) =>{
         let username = param.username
         let require = param.require
         let orderid = param.orderid
         let pictureurl = param.pictureurl
         let length = pictureurl.length
+        let state = 'noaccept'
         console.log(username,require,orderid,pictureurl,length)
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length>10){
             res.send(JSON.stringify({status:'over'}))
@@ -67,7 +116,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===1){
-            db.query(sqlStatement.insertorder1,[orderid,username,length,require,pictureurl[0]],(err)=>{
+            db.query(sqlStatement.insertorder1,[orderid,username,length,require,pictureurl[0],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -82,7 +131,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===2){
-            db.query(sqlStatement.insertorder2,[orderid,username,length,require,pictureurl[0],pictureurl[1]],(err)=>{
+            db.query(sqlStatement.insertorder2,[orderid,username,length,require,pictureurl[0],pictureurl[1],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -97,7 +146,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===3){
-            db.query(sqlStatement.insertorder3,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2]],(err)=>{
+            db.query(sqlStatement.insertorder3,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -112,7 +161,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===4){
-            db.query(sqlStatement.insertorder4,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3]],(err)=>{
+            db.query(sqlStatement.insertorder4,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -127,7 +176,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===5){
-            db.query(sqlStatement.insertorder5,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4]],(err)=>{
+            db.query(sqlStatement.insertorder5,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -142,7 +191,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===6){
-            db.query(sqlStatement.insertorder6,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5]],(err)=>{
+            db.query(sqlStatement.insertorder6,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -157,7 +206,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===7){
-            db.query(sqlStatement.insertorder7,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6]],(err)=>{
+            db.query(sqlStatement.insertorder7,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -172,7 +221,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===8){
-            db.query(sqlStatement.insertorder8,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],pictureurl[7]],(err)=>{
+            db.query(sqlStatement.insertorder8,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],pictureurl[7],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -187,7 +236,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===9){
-            db.query(sqlStatement.insertorder9,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],pictureurl[7],pictureurl[8]],(err)=>{
+            db.query(sqlStatement.insertorder9,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],pictureurl[7],pictureurl[8],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }
@@ -202,7 +251,7 @@ const userData = {
             })
         }
         if(username!==null&&require!==null&&orderid!==null&&pictureurl!==null&&length===10){
-            db.query(sqlStatement.insertorder10,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],pictureurl[7],pictureurl[8],pictureurl[9]],(err)=>{
+            db.query(sqlStatement.insertorder10,[orderid,username,length,require,pictureurl[0],pictureurl[1],pictureurl[2],pictureurl[3],pictureurl[4],pictureurl[5],pictureurl[6],pictureurl[7],pictureurl[8],pictureurl[9],state],(err)=>{
                 if (!err){
                     res.send(JSON.stringify({status:'success'}))
                 }

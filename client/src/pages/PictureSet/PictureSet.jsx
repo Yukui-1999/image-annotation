@@ -28,10 +28,10 @@ export default class PictureSet extends React.Component {
                 const data = response.data
                 const result = data.status
                 if (result === 'success'){
-                    message.success('发布成功',3)
+                    message.success('发布成功',2)
                     setTimeout(()=>{
                       window.location.reload()
-                    },2000)
+                    },1000)
                 }
                 else if(result === 'failed'){
                     console.log(result)

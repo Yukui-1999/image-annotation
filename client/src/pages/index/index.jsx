@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu,Button } from 'antd';
+import { Layout, Menu,Button,message } from 'antd';
 import {Route, Switch, Redirect, Link} from 'react-router-dom';
 import {PieChartOutlined,FileOutlined,UserOutlined,} from '@ant-design/icons';
 import PictureSet from "../PictureSet/PictureSet";
@@ -10,6 +10,7 @@ import Alljobs from "../Alljobs/Alljobs";
 import VideoSet from '../VideoSet/VideoSet'
 import Myrelease from '../Myrelease/Myrelease'
 import Myreceive from '../Myreceive/Myreceive'
+import Workbench from "../Workbench/Workbench";
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 class Index extends React.Component {
@@ -18,7 +19,14 @@ class Index extends React.Component {
     currentPage:"", 
     username:cookie.load('username')
   };
-
+  componentDidMount () {
+    const success = cookie.load('loginSuccess')
+    if (success !== undefined) {
+        message.success('登陆成功。欢迎您，' + this.state.username, 10)
+            .then(value => console.log(value), reason => console.log(reason))
+        cookie.remove('loginSuccess',{ path: '/' })
+    }
+}
   constructor (props) {
       super (props);
       const username = cookie.load('username');
@@ -79,7 +87,7 @@ class Index extends React.Component {
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="6" icon={<PieChartOutlined />}>
-                <Link to="/index/alljobs">
+                <Link to="/index/workbench">
                 标注工作台
                 </Link>
             </Menu.Item>
@@ -97,6 +105,7 @@ class Index extends React.Component {
                 <Route  path="/index/alljobs" component={Alljobs}/>
                 <Route  path="/index/myrelease" component={Myrelease}/>
                 <Route  path="/index/myreceive" component={Myreceive}/>
+                <Route path="/index/workbench" component={Workbench}/>
                 <Redirect to= "/index/alljobs" />                
               </Switch>
             </div>
