@@ -20,6 +20,9 @@ const user = {
     querymyrelease:'SELECT * FROM assignment WHERE orderer=?',
     querymyreceive:'SELECT * FROM assignment WHERE accepter=?',
     claimtask:'UPDATE assignment SET state=?, accepter=? WHERE `orderid`=?',
+    uploaddata:'UPDATE assignment SET state=?, annotationdata=? WHERE `orderid`=?',
+    getdata:'SELECT annotationdata from assignment where orderid=?',
+    pass:'UPDATE assignment SET state=? WHERE `orderid`=?',
 };
 module.exports = {user};
 // INSERT INTO order (orderid, orderer, numofimage, require, imageurl1) VALUES (?, ?, ?, ?, ?)

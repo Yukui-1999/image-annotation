@@ -15,6 +15,9 @@ var login= require('./routes/user/login');
 var myrelease = require('./routes/user/myrelease')
 var claimtask = require('./routes/user/claimtask')
 var myreceive = require('./routes/user/myreceive')
+var uploaddata = require('./routes/user/uploaddata')
+var getdata = require('./routes/user/getdata')
+var pass = require('./routes/user/pass')
 var app = express();
 
 // view engine setup
@@ -38,6 +41,9 @@ app.use("/alljobs",alljobs)
 app.use("/login",login)
 app.use("/claimtask",claimtask)
 app.use("/myreceive",myreceive)
+app.use("/uploaddata",uploaddata)
+app.use("/getdata",getdata)
+app.use("/pass",pass)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

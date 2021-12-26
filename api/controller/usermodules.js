@@ -76,6 +76,56 @@ const userData = {
             }
         })
     },
+    pass:(param,res)=>{
+        let orderid = param.orderid
+        let state = param.state
+        console.log(orderid,state)
+        db.query(sqlStatement.pass,[state,orderid],(err,result)=>{
+            if(err){
+                const result = {status:'failed'}
+                res.send(JSON.stringify(result))
+            }
+            else{
+                const result = {status:'success'}
+                res.send(JSON.stringify(result))
+            } 
+        })
+    },
+    uploaddata:(param,res)=>{
+        let orderid = param.orderid
+        let data = param.data
+        let state = 'done'
+        console.log(data)
+        db.query(sqlStatement.uploaddata,[state,data,orderid],(err,result)=>{
+            console.log(result)
+            if(err){
+                const result = {status:'failed'}
+                res.send(JSON.stringify(result))
+            }
+            else{
+                const result = {status:'success'}
+                res.send(JSON.stringify(result))
+            }
+        })
+
+    },
+    getdata:(param ,res)=>{
+        let orderid = param.orderid
+        console.log(orderid)
+        db.query(sqlStatement.getdata,orderid,(err,result)=>{
+            console.log(result)
+            const data=result
+            if(err){
+                const result = {status:'failed'}
+                res.send(JSON.stringify(result))
+            }
+            else{
+                const result = {status:'success',data:data}
+                res.send(JSON.stringify(result))
+            }
+        })
+
+    },
     myreceive:(param,res)=>{
         let username = param.username
         console.log(username)
@@ -92,8 +142,6 @@ const userData = {
             }
         })
     },
-
-
     pictureupload:(param,res) =>{
         let username = param.username
         let require = param.require
