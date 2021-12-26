@@ -20,3 +20,8 @@
     top:16px;
     right: 2%;
 }
+#username{
+  position: absolute;
+  top:0px;
+  right: 10%;
+}

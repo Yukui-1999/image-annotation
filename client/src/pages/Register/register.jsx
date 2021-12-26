@@ -151,6 +151,9 @@ class Register extends Component {
 
     render () {
         return (
+            <div>
+                <br/>  <br/>  <br/>
+               <div style={{textAlign:'center',fontSize:40,fontFamily: 'cursive'}}>在线图像标注系统</div>
             <div className='myForm'>
                 <img src='./images/registerPicture.jpg' className='leftPicture' alt='leftPicture'/>
                 <div className='right'>
@@ -163,7 +166,7 @@ class Register extends Component {
                         }}
                     >
                         <Form.Item
-                            name="username"
+                            name="usename"
                             rules={[
                                 {
                                     required: true,
@@ -177,12 +180,13 @@ class Register extends Component {
                                     trigger: 'blur'
                                 }
                             ]}
-                            validateStatus={this.state.nameStyle}
                             hasFeedback
+                            validateStatus={this.state.nameStyle}
                             help={this.state.nameHelp}
                         >
                             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" onChange={this.handleUsername}/>
                         </Form.Item>
+                       
 
                         <Form.Item
                             name="email"
@@ -261,6 +265,7 @@ class Register extends Component {
                         </Form.Item>
                     </Form>
                 </div>
+            </div>
             </div>
         );
     }

@@ -5,6 +5,9 @@ class ForgetPwd extends Component {
 
     render () {
         return (
+            <div>
+            <br/>  <br/>  <br/>
+               <div style={{textAlign:'center',fontSize:40,fontFamily: 'cursive'}}>在线图像标注系统</div>
             <div className='myForm'>
                 <div style={{display:'inline-block', width:'600px', overflow:'hidden'}}>
                     <img src={'./images/passwordPicture.jpg'} alt='passwordPicture.jpg'  className='leftPicture' />
@@ -15,7 +18,7 @@ class ForgetPwd extends Component {
                     <AlterPwd style={{width:"100%"}}/>
                 </div>
             </div>
-
+            </div>
         );
     }
 }

@@ -1,7 +1,7 @@
 import React , { useState }from "react";
 import cookie from 'react-cookies'
 import './VideoSet.css'
-import {Image,Form, Input, Button, message,Upload} from 'antd'
+import {Image,Form, Input, Button} from 'antd'
 import saveAs from 'file-saver'
 import JSZip from 'jszip';
 import {DownloadOutlined} from '@ant-design/icons'
@@ -48,7 +48,9 @@ export default class VideoSet extends React.Component {
         video.pause();
         if(frames && frames.length > 0) {
         console.log(frames.length + ' frames captured');
+        console.log(this.state.pictureurl)
         let zip = new JSZip();
+        
         let zipFilename = videoName + "Frames.zip";
         for(let i = 0; i < frames.length; i ++) {
             zip.file(i + ".png", frames[i].split(',')[1], {base64: true});

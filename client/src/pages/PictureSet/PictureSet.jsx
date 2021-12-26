@@ -30,7 +30,7 @@ export default class PictureSet extends React.Component {
                 if (result === 'success'){
                     message.success('发布成功',2)
                     setTimeout(()=>{
-                      window.location.reload()
+                      window.location.href="/index/alljobs"
                     },1000)
                 }
                 else if(result === 'failed'){

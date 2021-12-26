@@ -8,12 +8,20 @@ export default class Myreceive extends React.Component{
         sourcedata:[],
     }
     confirm=(e)=>{
+      if(e.state==='pass'){
+        message.success('标注已经完成')
+        return
+      }
+        
         console.log(e)
+        this.props.history.push({pathname:'/index/workbench',state:{pictureset:e.image,orderid:e.orderid}})
       }
     end=(e)=>{
         console.log(e)
     }
     componentDidMount(){
+      //cookie.remove('path',{path:"/"})
+      cookie.save('path','/index/myreceive',{path:"/"})
         let data;
         console.log(this.state.username)
         axios.post('http://localhost:9000/myreceive', {
@@ -189,7 +197,7 @@ export default class Myreceive extends React.Component{
                 dataIndex:'state',
                 render:(text,record)=>(
                     <Space size="middle">
-                        <Tag color="gold">{record.state}</Tag>
+                       <Tag color={record.state==='accept'?'red':record.state==='done'?'orange':record.state==='nopass'?'cyan':'green'}>{record.state}</Tag>
                     </Space>
                 )
             },
@@ -198,16 +206,16 @@ export default class Myreceive extends React.Component{
                 key:'gotowork',
                 render:(text,record)=>(
                   <Space size="middle">
-                    <Button type="primary" onClick={() => this.confirm(record.image)}>标注</Button>
+                    <Button type="primary" onClick={() => this.confirm(record)}>标注</Button>
                   </Space>
                 )
             },
             {
-                title:'确认任务结束',
-                key:'gotowork',
+                title:'发布人审核结果',
+                key:'result',
                 render:(text,record)=>(
                   <Space size="middle">
-                    <Button type="primary" danger onClick={() => this.end(record.orderid)}>确认结束</Button>
+                    <div>{record.state==='accept'?null:record.state==='done'?'发布人正在审核':record.state==='pass'?'审核通过,任务结束':'审核不通过,请重新标注'}</div>
                   </Space>
                 )
             }

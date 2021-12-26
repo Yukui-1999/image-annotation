@@ -65,9 +65,10 @@ class AlterPwd extends Component {
 
     render () {
         return (
+            
             <Form  className={'trueForm'}>
                 <Form.Item
-                        name="username"
+                        name="usename"
                         rules={[
                             {
                                 required: true,

@@ -8,6 +8,7 @@ class Alljobs extends React.Component{
         sourcedata:[],
     }
      confirm=(e)=> {
+      
         console.log(e);
         let data;
         axios.post('http://localhost:9000/claimtask', {
@@ -24,11 +25,13 @@ class Alljobs extends React.Component{
                   message.success('领取成功,请在"我的-我的领取中查看任务"',3);
                   setTimeout(()=>{
                     window.location.reload()
-                  },1000)
+                  },300)
                 }
           })
       }
       componentDidMount () {
+        //cookie.remove('path',{path:"/"})
+        cookie.save('path','/index/alljobs',{path:"/"})
         let data
         axios.post('http://localhost:9000/alljobs')
           .then(function (response) {

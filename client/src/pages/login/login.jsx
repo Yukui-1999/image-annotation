@@ -75,6 +75,9 @@ class Login extends Component {
 
     render () {
         return (
+           <div>
+               <br/>  <br/>  <br/>
+               <div style={{textAlign:'center',fontSize:40,fontFamily: 'cursive'}}>在线图像标注系统</div>
             <div className='myForm'>
                 <img src={'./images/loginPicture.jpg'} alt={'loginPicture'} className='leftPicture'/>
                 <div className='right'>
@@ -88,7 +91,7 @@ class Login extends Component {
                         }}
                     >
                         <Form.Item
-                            name="username"
+                            name="usename"
                             rules={[
                                 {
                                     required: true,
@@ -143,6 +146,7 @@ class Login extends Component {
                         </Form.Item>
                     </Form>
                 </div>
+            </div>
             </div>
         );
     }

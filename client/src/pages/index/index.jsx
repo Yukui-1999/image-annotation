@@ -16,8 +16,9 @@ const { SubMenu } = Menu;
 class Index extends React.Component {
   state = {
     collapsed: false,
-    currentPage:"", 
-    username:cookie.load('username')
+    username:cookie.load('username'),
+    
+  
   };
   componentDidMount () {
     const success = cookie.load('loginSuccess')
@@ -26,6 +27,10 @@ class Index extends React.Component {
             .then(value => console.log(value), reason => console.log(reason))
         cookie.remove('loginSuccess',{ path: '/' })
     }
+    
+   
+  
+  
 }
   constructor (props) {
       super (props);
@@ -35,6 +40,7 @@ class Index extends React.Component {
           window.location.href = '/login'
       }
   }
+  
   handleLoginOut = () => {
       cookie.remove('username', { path: '/' })
       cookie.remove('loginSuccess', { path: '/' })
@@ -48,54 +54,58 @@ class Index extends React.Component {
     console.log(collapsed);
     this.setState({ collapsed });
   };
-
+  
   render() {
     const { collapsed } = this.state;
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
           <div className="logo">图像标注系统</div>
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
+          <Menu theme="dark"  mode="inline" selectedKeys={this.props.location.pathname}
+          >
+            <Menu.Item key="/index/alljobs" icon={<PieChartOutlined />}>
                 <Link to="/index/alljobs">
                 标注市场
                 </Link>
             </Menu.Item>
             <SubMenu key="sub2" icon={<UserOutlined />} title="发布任务">
-              <Menu.Item key="2">
+              <Menu.Item key="/index/picture">
                 <Link to="/index/picture">
                 发布图片任务
                 </Link>
               </Menu.Item>
-              <Menu.Item key="3">
+              <Menu.Item key="/index/video">
               <Link to="/index/video">
                 视频提取图片工具
               </Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub3" icon={<UserOutlined />} title="我的">
-              <Menu.Item key="4">
+              <Menu.Item key="/index/myrelease">
                 <Link to="/index/myrelease">
                 我的发布
                 </Link>
               </Menu.Item>
-              <Menu.Item key="5">
+              <Menu.Item key="/index/myreceive">
               <Link to="/index/myreceive">
                 我的领取
               </Link>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="6" icon={<PieChartOutlined />}>
-                <Link to="/index/workbench">
+            <Menu.Item key="/index/workbench" icon={<PieChartOutlined />} >
+                
                 标注工作台
-                </Link>
+             
             </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background"  >
+            
+            <span id='username' style={{color:'white'}}>username : {this.state.username}</span>
           <Button type="primary" id="exitBtn" onClick = {this.handleLoginOut}>退出登录</Button>
+            
+            
           </Header>
           <Content style={{ margin: '0 16px' }} >
             <div className="content-layout-background" style={{ padding: 0, minHeight: 650}}>
