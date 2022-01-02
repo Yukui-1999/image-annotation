@@ -1,7 +1,7 @@
 import React from "react";
 import { Layout, Menu,Button,message } from 'antd';
 import {Route, Switch, Redirect, Link} from 'react-router-dom';
-import {PieChartOutlined,FileOutlined,UserOutlined,} from '@ant-design/icons';
+import {PieChartOutlined,DatabaseOutlined,UserOutlined,CloudUploadOutlined} from '@ant-design/icons';
 import PictureSet from "../PictureSet/PictureSet";
 import "./Index.css"
 import 'antd/dist/antd.css';
@@ -63,12 +63,12 @@ class Index extends React.Component {
           <div className="logo">图像标注系统</div>
           <Menu theme="dark"  mode="inline" selectedKeys={this.props.location.pathname}
           >
-            <Menu.Item key="/index/alljobs" icon={<PieChartOutlined />}>
+            <Menu.Item key="/index/alljobs" icon={<DatabaseOutlined />}>
                 <Link to="/index/alljobs">
                 标注市场
                 </Link>
             </Menu.Item>
-            <SubMenu key="sub2" icon={<UserOutlined />} title="发布任务">
+            <SubMenu key="sub2" icon={<CloudUploadOutlined />} title="发布任务">
               <Menu.Item key="/index/picture">
                 <Link to="/index/picture">
                 发布图片任务
